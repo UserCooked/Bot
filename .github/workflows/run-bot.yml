@@ -45,7 +45,6 @@ jobs:
       - name: Set Executable Permissions
         run: |
           chmod +x ./engines/stockfish
-          chmod +x ./engines/fairy-stockfish
 
       - name: Run Bot
         run: |
