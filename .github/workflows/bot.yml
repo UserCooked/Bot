@@ -25,6 +25,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+    
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
 
       - name: Cache pip
         uses: actions/cache@v3
@@ -49,3 +52,9 @@ jobs:
       - name: Run Bot
         run: |
           python -u user_interface.py --matchmaking
+     
+      - name: 🔁 Self-Restart (Fire-and-Forget)
+        if: always()
+        run: gh workflow run bot.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
